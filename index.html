@@ -76,6 +76,7 @@
   #scores .team { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #2b2118; vertical-align: middle; }
   #scores .tap { font-size: 12px; opacity: 0.6; margin-top: 1em; }
   #b-score { position: fixed; top: calc(8px + env(safe-area-inset-top)); right: calc(140px + env(safe-area-inset-right)); width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.35); background: var(--btn); color: #fff; font-size: 18px; line-height: 1; padding: 0; }
+  #b-bag { position: fixed; top: calc(8px + env(safe-area-inset-top)); right: calc(182px + env(safe-area-inset-right)); width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.35); background: var(--btn); color: #fff; font-size: 18px; line-height: 1; padding: 0; }
   #report .paper { position: relative; width: min(920px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow-y: auto; touch-action: pan-y; box-sizing: border-box; padding: clamp(18px, 4vw, 48px) clamp(20px, 6vw, 80px); color: #2b2118; font-family: Georgia, 'Times New Roman', serif; text-align: center; border-radius: 4px 14px 6px 12px / 12px 4px 14px 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 0 60px rgba(120,90,40,0.25); background: radial-gradient(ellipse at 20% 10%, #f8efd6, #ecdcb4 55%, #d9c290); }
   #report h2 { margin: 0 0 0.3em; font-size: clamp(22px, 2.2vw + 10px, 40px); letter-spacing: 0.04em; font-variant: small-caps; border-bottom: 2px solid rgba(43,33,24,0.35); padding-bottom: 0.3em; }
   #report p { margin: 0.6em 0; font-size: clamp(16px, 1vw + 9px, 24px); line-height: 1.5; }
@@ -264,7 +265,7 @@
   #morse .notes { grid-column: 1 / -1; display: flex; gap: 4px; margin-top: 6px; }
   #morse .notes input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--ink); background: #fff; color: #1b1b1b; user-select: text; -webkit-user-select: text; touch-action: auto; }
   #morse .notes button { font: inherit; min-width: 32px; padding: 4px; border-radius: 6px; border: 1px solid var(--ink); background: transparent; color: var(--ink); }
-  #ask .cheat { display: inline-block; margin: 0 0 10px; padding: 6px 12px; border: 1px dashed var(--ink); border-radius: 8px; font: 13px/1.4 ui-monospace, monospace; text-align: left; }
+  #ask .cheat { display: inline-block; margin: 0 0 10px; padding: 6px 12px; border: 1px dashed var(--ink); border-radius: 8px; font: 13px/1.4 ui-monospace, monospace; text-align: left; max-width: 100%; box-sizing: border-box; white-space: pre-wrap; }
   #ask .keys { display: none; }
   @media (pointer: coarse) {
     #ask .keys { display: grid; grid-template-columns: repeat(14, 1fr); gap: 3px; margin-top: 6px; }
@@ -282,7 +283,7 @@
   #debug[hidden] { display: none; }
   #sig { position: fixed; right: calc(8px + env(safe-area-inset-right)); bottom: calc(1px + env(safe-area-inset-bottom)); color: rgba(255,255,255,0.55); font: 10px system-ui, sans-serif; text-shadow: 0 1px 2px #000; pointer-events: none; z-index: 1; }
 </style>
-<script>fetch('version.txt',{cache:'no-store'}).then((r)=>r.ok?r.text():'').then((v)=>{v=v.trim();if(/^[0-9a-f]{10}$/.test(v)&&v!=='b8d7f66239'&&new URLSearchParams(location.search).get('v')!==v)location.replace(location.pathname+'?v='+v+location.hash);}).catch(()=>{});</script>
+<script>fetch('version.txt',{cache:'no-store'}).then((r)=>r.ok?r.text():'').then((v)=>{v=v.trim();if(/^[0-9a-f]{10}$/.test(v)&&v!=='81b4b451bf'&&new URLSearchParams(location.search).get('v')!==v)location.replace(location.pathname+'?v='+v+location.hash);}).catch(()=>{});</script>
 </head>
 <body>
 <div id="game"></div>
@@ -293,6 +294,7 @@
 <button id="b-pause" aria-label="Pausa" data-key="pause">II</button>
 <button id="b-map" aria-label="Mapa" data-key="map">📜</button>
 <button id="b-score" aria-label="Pontuação">🏆</button>
+<button id="b-bag" aria-label="Mochila" data-key="bag" hidden>🎒</button>
 <div class="btn" id="b-left" data-key="left">◀</div>
 <div class="btn" id="b-right" data-key="right">▶</div>
 <div class="btn" id="b-run" data-key="run">Correr</div>
@@ -323,6 +325,6 @@
   addEventListener('unhandledrejection', (e) => show(`promise: ${e.reason?.stack ?? e.reason}`)); })();
 </script>
 <script src="phaser.min.js?v=66348b1b51"></script>
-<script src="game.js?v=c38288d3c0"></script>
+<script src="game.js?v=3e4b742bdc"></script>
 </body>
 </html>
